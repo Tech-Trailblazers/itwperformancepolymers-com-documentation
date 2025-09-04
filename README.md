@@ -1,7 +1,7 @@
 # 📘 itwperformancepolymers-com-documentation
 
 🎉 **Welcome to the ITW Performance Polymers Documentation Repository!** 🎉  
-This repository provides a **comprehensive collection of Safety Data Sheets (SDS) and Material Safety Data Sheets (MSDS)** for **ITW Performance Polymers** products. 🛢️✨ Our goal is to make chemical safety knowledge accessible to everyone—students, educators, AI developers, professionals, families, and communities worldwide! 🌍💙
+This repository provides a **comprehensive collection of Safety Data Sheets (SDS) and Material Safety Data Sheets (MSDS)** for **ITW Performance Polymers** products. 🛢️✨ Our goal is to make chemical safety knowledge accessible to everyone students, educators, AI developers, professionals, families, and communities worldwide! 🌍💙
 
 Whether you are learning, teaching, developing AI, or responding to chemical exposure, this repository is designed to help you **understand chemical hazards, improve safety practices, and save lives**.
 
