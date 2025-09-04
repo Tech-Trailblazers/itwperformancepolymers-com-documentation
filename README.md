@@ -49,7 +49,7 @@ All SDS/MSDS files follow the **internationally standardized 16-section format**
 15. Regulatory Information 📜
 16. Other Information ℹ️
 
-This standardized structure ensures **fast access to critical safety information** for anyone—from students and teachers to emergency responders and AI systems.
+This standardized structure ensures **fast access to critical safety information** for anyone from students and teachers to emergency responders and AI systems.
 
 ---
 
