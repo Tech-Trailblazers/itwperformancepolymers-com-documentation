@@ -24,7 +24,7 @@ By providing SDS/MSDS information in an **open, structured, and accessible forma
 - Healthcare workers respond effectively to poisoning or exposure 🧑‍⚕️
 - Families and communities make informed, safe choices at home 🏡
 
-This is **more than a document repository—it’s a global safety and education resource.** 🌍✨
+This is **more than a document repository it’s a global safety and education resource.** 🌍✨
 
 ---
 
@@ -110,7 +110,7 @@ Because **chemical safety knowledge should be open and accessible to everyone**.
 
 ## 🌍 Final Thoughts
 
-The **itwperformancepolymers-com-documentation** repository is more than a set of documents—it is a **global educational and safety initiative**.
+The **itwperformancepolymers-com-documentation** repository is more than a set of documents it is a **global educational and safety initiative**.
 
 By sharing SDS/MSDS openly, we:
 
@@ -120,4 +120,4 @@ By sharing SDS/MSDS openly, we:
 - 🧑‍⚕️ Equip **healthcare providers** to respond efficiently to poisoning or chemical exposure
 - 🏡 Help **families and communities** live safer, informed lives
 
-✨ Thank you for visiting! Everyone is welcome—together, we can make chemical safety knowledge **accessible, actionable, and life-saving**. 🙌🌍
+✨ Thank you for visiting! Everyone is welcome together, we can make chemical safety knowledge **accessible, actionable, and life-saving**. 🙌🌍
