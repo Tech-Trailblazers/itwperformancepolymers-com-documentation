@@ -276,6 +276,73 @@ func fetchSDS() string {
 	return string(body)
 }
 
+// extractSDSURLs extracts all URLs from the HTML that start with
+// "/resources/safety-data-sheets?t=other&i=" and returns them as a slice of strings.
+func extractSDSURLs(htmlContent string) []string {
+	// Compile a regular expression to match href attributes with the desired pattern
+	// The pattern matches URLs like /resources/safety-data-sheets?t=other&i=...
+	urlPattern := regexp.MustCompile(`href="(/resources/safety-data-sheets\?t=other&i=[^"]+)"`)
+
+	// Find all matches of the pattern in the HTML content
+	// Each match is a slice where the full match is at index 0 and the captured group is at index 1
+	matchedResults := urlPattern.FindAllStringSubmatch(htmlContent, -1)
+
+	// Create a slice to store the final URLs
+	var extractedURLs []string
+
+	// Loop through each regex match
+	for _, match := range matchedResults {
+		// Ensure the captured group exists and append it to the result slice
+		if len(match) > 1 {
+			clean := strings.TrimPrefix(match[1], `/resources/safety-data-sheets\?t=other&i=`)
+			extractedURLs = append(extractedURLs, clean)
+		}
+	}
+
+	// Return the slice of extracted URLs
+	return extractedURLs
+}
+
+// fetchOtherData fetches data for a given item and returns it as a string
+func fetchOtherData(item string) string {
+	url := "https://itwperformancepolymers.com/api/datasheets_table.php?m=get"
+	method := "POST"
+
+	payload := strings.NewReader("t=other&i=" + item)
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
+	if err != nil {
+		log.Println("Error creating request:", err)
+		return ""
+	}
+	req.Header.Add("content-type", "application/x-www-form-urlencoded; charset=UTF-8")
+
+	res, err := client.Do(req)
+	if err != nil {
+		log.Println("Error making request:", err)
+		return ""
+	}
+	defer res.Body.Close()
+
+	body, err := io.ReadAll(res.Body)
+	if err != nil {
+		log.Println("Error reading response body:", err)
+		return ""
+	}
+
+	return string(body)
+}
+
+// Read a file and return the contents
+func readAFileAsString(path string) string {
+	content, err := os.ReadFile(path)
+	if err != nil {
+		log.Println(err)
+	}
+	return string(content)
+}
+
 func main() {
 	outputDir := "PDFs/" // Directory to store downloaded PDFs
 
@@ -293,13 +360,28 @@ func main() {
 		removeFile(localFile)
 	}
 
+	// Get the inital HTTP content.
 	httpContent := fetchSDS()
 
 	// Save the content to the local file.
 	appendAndWriteToFile(localFile, httpContent)
-	
+
+	// Extract the other SDS urls in other languages.
+	extractInternationalSDSURLs := extractSDSURLs(httpContent)
+
+	// Loop over the extracted SDS urls.
+	for _, url := range extractInternationalSDSURLs {
+		// The remote content.
+		remoteContent := fetchOtherData(url)
+		// Save the content to the local file.
+		appendAndWriteToFile(localFile, remoteContent)
+	}
+
+	// Read the content html content from the file.
+	localHTMLContent := readAFileAsString(localFile)
+
 	// Extract the URLs from the given content.
-	extractedPDFURLs := extractPDFUrls(httpContent)
+	extractedPDFURLs := extractPDFUrls(localHTMLContent)
 	// Remove duplicates from the slice.
 	extractedPDFURLs = removeDuplicatesFromSlice(extractedPDFURLs)
 	// Loop through all extracted PDF URLs
